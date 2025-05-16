@@ -1,0 +1,79 @@
+{
+  "name": "react-native-fundamentals",
+  "version": "1.0.0",
+  "description": "Zero-dependency, customizable React Native components with built-in theming that install directly into your project",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dragan14/react-native-fundamentals"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "components",
+    "ui-library",
+    "ui-components",
+    "customizable",
+    "theming",
+    "zero-dependency",
+    "mobile",
+    "ios",
+    "android",
+    "button",
+    "text-input",
+    "segmented-control",
+    "segmented-buttons",
+    "toast",
+    "alert"
+  ],
+  "author": "Dragan Stojanovski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dragan14/react-native-fundamentals/issues"
+  },
+  "homepage": "https://github.com/Dragan14/react-native-fundamentals#readme",
+  "demo": "https://github.com/Dragan14/react-native-fundamentals-demo",
+  "bin": {
+    "react-native-fundamentals": "./cli.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "cli.js",
+    "components",
+    "context",
+    "themes"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^2.1.2",
+    "fs-extra": "^10.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-native": "0.76.9",
+    "react-native-safe-area-context": "4.12.0",
+    "react-native-reanimated": "~3.16.1",
+    "react-native-gesture-handler": "~2.20.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.60.0",
+    "react-native-safe-area-context": ">=3.0.0",
+    "react-native-reanimated": ">=3.0.0",
+    "react-native-gesture-handler": ">=2.0.0",
+    "@react-native-async-storage/async-storage": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~18.3.12",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "prettier": "^3.5.3",
+    "typescript": "^5.3.3"
+  }
+}

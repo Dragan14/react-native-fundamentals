@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "jsx": "react-native",
+    "module": "CommonJS",
+    "target": "ES2024",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "rootDir": ".",
+    "strict": true,
+    "resolveJsonModule": true
+  },
+  "include": ["index.ts", "components/**/*", "context/**/*", "themes/**/*"],
+  "exclude": ["node_modules", "dist", "cli.js"]
+}
