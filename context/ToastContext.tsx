@@ -38,7 +38,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [currentToast, setCurrentToast] = useState<ToastItem | null>(null);
   const nextIdRef = useRef(0);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const showToast = ({ duration = 3000, ...props }: ShowToastParams) => {
     if (timeoutRef.current) {

@@ -48,7 +48,10 @@ const scaledSize = (baseSize: number) => {
   return Math.round(baseSize * PixelRatio.getFontScale());
 };
 
-const renderElement = (element: ReactElement, color: string): ReactElement => {
+const renderElement = (
+  element: ReactElement<any, any>,
+  color: string,
+): ReactElement<any, any> => {
   if (element.type === Fragment) {
     const children = Children.map(element.props.children, (child) =>
       isValidElement(child) ? renderElement(child, color) : child,

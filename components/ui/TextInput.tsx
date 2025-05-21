@@ -71,7 +71,7 @@ const scaledSize = (baseSize: number) => {
 };
 
 // Helper function to render icons
-const renderIcon = (icon: ReactElement, color: string) => {
+const renderIcon = (icon: ReactElement<any, any>, color: string) => {
   return cloneElement(icon, {
     color: icon.props.color ?? color,
     size: (icon.props.size && scaledSize(icon.props.size)) ?? scaledSize(24),
@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       web: {
         outlineStyle: "none",
-      },
+      } as any,
     }),
     paddingVertical: 0,
     paddingHorizontal: 0,
