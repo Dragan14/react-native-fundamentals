@@ -178,7 +178,17 @@ const TextInput = ({
   };
 
   return (
-    <View style={style}>
+    <View
+      style={[
+        {
+          marginTop:
+            hasTopLabel && variant === "outlined"
+              ? Math.abs(layout.labelTop)
+              : 0,
+        },
+        style,
+      ]}
+    >
       <Pressable
         onPress={() => {
           if (!disabled) {
