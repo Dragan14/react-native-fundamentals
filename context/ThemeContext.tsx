@@ -42,9 +42,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         if (stored === "light" || stored === "dark" || stored === "system") {
           setThemeMode(stored);
         }
-      } catch (e) {
-        console.error("Failed to load theme mode:", e);
-      }
+      } catch {}
     })();
   }, []);
 
@@ -53,9 +51,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     (async () => {
       try {
         await AsyncStorage.setItem(THEME_MODE_KEY, themeMode);
-      } catch (e) {
-        console.error("Failed to save theme mode:", e);
-      }
+      } catch {}
     })();
   }, [themeMode]);
 
