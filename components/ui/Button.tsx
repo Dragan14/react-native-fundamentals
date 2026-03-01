@@ -277,6 +277,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
     width: "100%",
+    minHeight: scaledSize(20),
   },
   hovered: {
     opacity: 0.9,

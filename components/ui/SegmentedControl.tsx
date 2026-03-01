@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
   tabBase: {
     flex: 1,
     padding: 5,
+    minHeight: scaledSize(45),
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
