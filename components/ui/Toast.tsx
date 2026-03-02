@@ -228,7 +228,7 @@ const Toast = ({
             borderColor: borderColor,
           },
           { width: maxToastWidth },
-          { maxWidth: maxToastWidth },
+          { maxWidth: maxToastWidth > 450 ? 450 : maxToastWidth },
           basePositionStyle,
           style,
         ]}
