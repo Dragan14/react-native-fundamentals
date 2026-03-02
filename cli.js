@@ -60,8 +60,8 @@ const addRelatedContext = async (contextName) => {
     return false;
   }
 
-  const sourcePath = path.resolve(__dirname, `context/${contextName}.tsx`);
-  const targetDir = path.resolve(process.cwd(), "context");
+  const sourcePath = path.resolve(__dirname, `context/ui/${contextName}.tsx`);
+  const targetDir = path.resolve(process.cwd(), "context/ui");
   const targetPath = path.resolve(targetDir, `${contextName}.tsx`);
 
   // Check if the context already exists
@@ -129,8 +129,8 @@ const addComponent = async (componentName) => {
       added = true;
     }
   } else if (availableContexts.includes(componentName)) {
-    sourcePath = path.resolve(__dirname, `context/${componentName}.tsx`);
-    targetDir = path.resolve(process.cwd(), "context");
+    sourcePath = path.resolve(__dirname, `context/ui/${componentName}.tsx`);
+    targetDir = path.resolve(process.cwd(), "context/ui");
     targetPath = path.resolve(targetDir, `${componentName}.tsx`);
 
     // Check if the context already exists

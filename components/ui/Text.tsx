@@ -7,7 +7,7 @@ import {
   TextStyle,
   Pressable,
 } from "react-native";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../context/ui/ThemeContext";
 
 /**
  * Props for the Text component.

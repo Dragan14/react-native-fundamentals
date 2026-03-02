@@ -1,8 +1,14 @@
-import { ReactNode } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  useEffect,
+} from "react";
 import { useColorScheme } from "react-native";
-import { createContext, useContext, useMemo, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { blueLight, blueDark } from "../themes/blueTheme";
+import { blueLight, blueDark } from "../../themes/blueTheme";
 
 type ThemeType = typeof blueLight;
 type ThemeMode = "light" | "dark" | "system";

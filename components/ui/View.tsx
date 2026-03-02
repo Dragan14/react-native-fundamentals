@@ -1,6 +1,6 @@
 // View.tsx
 import { View as RNView, ViewProps } from "react-native";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../context/ui/ThemeContext";
 
 const View = ({ style, ...props }: ViewProps) => {
   const { theme } = useTheme();

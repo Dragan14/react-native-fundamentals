@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import Alert from "../components/ui/Alert";
+import Alert from "../../components/ui/Alert";
 import { StyleProp, ViewStyle } from "react-native";
 
 /**

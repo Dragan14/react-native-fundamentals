@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useRef } from "react";
-import Toast, { ToastProps } from "../components/ui/Toast";
+import Toast, { ToastProps } from "../../components/ui/Toast";
 
 /**
  * Represents a single toast notification item with its unique ID and props.

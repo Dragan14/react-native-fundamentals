@@ -14,7 +14,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../context/ui/ThemeContext";
 import Animated, {
   runOnJS,
   SlideInDown,

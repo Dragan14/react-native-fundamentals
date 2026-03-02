@@ -6,7 +6,7 @@ https://github.com/AppAndFlow/react-native-safe-area-context/issues/114
 import { ReactNode } from "react";
 import { View, ViewStyle, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../context/ui/ThemeContext";
 
 /**
  * Props for the SafeAreaView component.
