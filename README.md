@@ -35,11 +35,9 @@ A collection of essential, customizable React Native components that are **direc
 Some components require additional dependencies:
 
 - **Theme:**
-
   - [react-native-async-storage](https://docs.expo.dev/versions/latest/sdk/async-storage/)
 
 - **Toast Component:**
-
   - [react-native-gesture-handler](https://docs.expo.dev/versions/latest/sdk/gesture-handler/)
   - [react-native-safe-area-context](https://docs.expo.dev/versions/latest/sdk/safe-area-context/)
   - [react-native-reanimated](https://docs.expo.dev/versions/latest/sdk/reanimated/)
@@ -60,6 +58,12 @@ npx react-native-fundamentals add theme
 
 # Add everything at once
 npx react-native-fundamentals add all
+
+# Remove a specific component from your project
+npx react-native-fundamentals remove Button
+
+# Remove everything added to your project
+npx react-native-fundamentals remove all
 
 # See all available components
 npx react-native-fundamentals list

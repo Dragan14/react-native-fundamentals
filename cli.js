@@ -182,6 +182,73 @@ const addComponent = async (componentName) => {
   }
 };
 
+// Command to remove a component from the user's project
+const removeComponent = async (componentName) => {
+  if (!componentName) {
+    console.error("❌ Please specify a component name");
+    showHelp();
+    return;
+  }
+
+  if (componentName === "all") {
+    const allItems = [
+      ...availableComponents,
+      ...availableContexts,
+      ...availableThemes,
+    ];
+    for (const item of allItems) {
+      await removeComponent(item);
+    }
+    console.log(
+      "✅ Successfully removed all components, contexts, and themes.",
+    );
+    return;
+  }
+
+  if (!isValidComponent(componentName)) {
+    console.error(`❌ Component "${componentName}" is not available.`);
+    console.log("Available components:");
+    availableComponents.forEach((comp) => console.log(`  - ${comp}`));
+    console.log("Available contexts:");
+    availableContexts.forEach((ctx) => console.log(`  - ${ctx}`));
+    console.log("Available themes:");
+    availableThemes.forEach((theme) => console.log(`  - ${theme}`));
+    return;
+  }
+
+  let targetPath = "";
+
+  if (availableComponents.includes(componentName)) {
+    targetPath = path.resolve(
+      process.cwd(),
+      "components",
+      "ui",
+      `${componentName}.tsx`,
+    );
+  } else if (availableContexts.includes(componentName)) {
+    targetPath = path.resolve(
+      process.cwd(),
+      "context",
+      "ui",
+      `${componentName}.tsx`,
+    );
+  } else if (availableThemes.includes(componentName)) {
+    targetPath = path.resolve(process.cwd(), "themes", `${componentName}.ts`);
+  }
+
+  if (!(await fs.pathExists(targetPath))) {
+    console.log(`ℹ️  ${componentName} does not exist in your project.`);
+    return;
+  }
+
+  try {
+    await fs.remove(targetPath);
+    console.log(`✅ Removed ${componentName}`);
+  } catch (error) {
+    console.error(`❌ Failed to remove ${componentName}:`, error);
+  }
+};
+
 // Command to list all available components
 const listComponents = () => {
   console.log("Available components:");
@@ -200,6 +267,7 @@ Usage:
 
 Commands:
   add <component>    Add a component to your project
+  remove <component> Remove a component from your project
   list               List all available components
   help               Show this help information
 
@@ -207,6 +275,8 @@ Examples:
   npx react-native-fundamentals add Button
   npx react-native-fundamentals add ThemeContext
   npx react-native-fundamentals add all
+  npx react-native-fundamentals remove Button
+  npx react-native-fundamentals remove all
   npx react-native-fundamentals list
   `);
 };
@@ -217,6 +287,9 @@ const main = async () => {
     switch (command) {
       case "add":
         await addComponent(componentName);
+        break;
+      case "remove":
+        await removeComponent(componentName);
         break;
       case "list":
         listComponents();
