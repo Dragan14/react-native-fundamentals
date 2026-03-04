@@ -355,6 +355,10 @@ const [selectedIndices, setSelectedIndices] = useState<number[]>([0]);
 | `rounded`          | `boolean`                 | `false` | If true, applies a circular border radius based on the component height.                                  |
 | `disabled`         | `boolean`                 | `false` | If true, disables interaction with all tabs.                                                              |
 
+#### Best Practices
+
+- When using `rounded={true}`, ensure the component's height is set to an even number for a perfectly circular border radius.
+
 ### Switch
 
 ```bash
