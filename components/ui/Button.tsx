@@ -232,25 +232,19 @@ const Button = forwardRef(
           ) : (
             <>
               {leftIcon && (
-                <View style={leftIconContainerStyle}>
+                <View style={[styles.iconContainer, leftIconContainerStyle]}>
                   {renderIcon(leftIcon, textColor)}
                 </View>
               )}
               {children && (
-                <View
-                  style={[
-                    styles.textContainer,
-                    textContainerStyle,
-                    !leftIcon && !rightIcon && { flex: 1 },
-                  ]}
-                >
+                <View style={[styles.textContainer, textContainerStyle]}>
                   <Text style={[styles.text, { color: textColor }, textStyle]}>
                     {children}
                   </Text>
                 </View>
               )}
               {rightIcon && (
-                <View style={rightIconContainerStyle}>
+                <View style={[styles.iconContainer, rightIconContainerStyle]}>
                   {renderIcon(rightIcon, textColor)}
                 </View>
               )}
@@ -275,9 +269,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
-    width: "100%",
-    minHeight: scaledSize(20),
+    padding: 5,
+    minHeight: scaledSize(34),
   },
   hovered: {
     opacity: 0.9,
@@ -287,7 +280,10 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: "center",
-    marginHorizontal: 4,
+    marginHorizontal: 5,
+  },
+  iconContainer: {
+    alignItems: "center",
   },
   text: {
     fontWeight: "500",
