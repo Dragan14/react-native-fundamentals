@@ -1,5 +1,5 @@
 // RadioButton.tsx
-import React from "react";
+import { ReactElement, cloneElement } from "react";
 import {
   Pressable,
   View,
@@ -9,6 +9,7 @@ import {
   ViewStyle,
   TextStyle,
   PressableProps,
+  PixelRatio,
 } from "react-native";
 import { useTheme } from "../../context/ui/ThemeContext";
 
@@ -18,6 +19,8 @@ import { useTheme } from "../../context/ui/ThemeContext";
 type RadioButtonProps = {
   /** The current state of the radio button (true for selected, false for unselected). */
   value: boolean;
+  /** Optional icon to display inside the radio button */
+  icon?: ReactElement;
   /** Callback function invoked when the radio button's state changes. */
   onValueChange: (value: boolean) => void;
   /** Optional label text displayed next to the radio button. */
@@ -32,8 +35,22 @@ type RadioButtonProps = {
   labelStyle?: StyleProp<TextStyle>;
 } & Omit<PressableProps, "onPress">;
 
+// Helper function to scale sizes based on font size
+const scaledSize = (baseSize: number) => {
+  return Math.round(baseSize * PixelRatio.getFontScale());
+};
+
+// Helper function to render icons
+const renderIcon = (icon: ReactElement<any, any>, color: string) => {
+  return cloneElement(icon, {
+    color: icon.props.color ?? color,
+    size: (icon.props.size && scaledSize(icon.props.size)) ?? scaledSize(24),
+  });
+};
+
 const RadioButton = ({
   value,
+  icon,
   onValueChange,
   label,
   disabled = false,
@@ -47,6 +64,18 @@ const RadioButton = ({
   const color = initialColor ?? theme.colors.primary;
   const disabledColor = theme.colors.onBackgroundDisabled;
   const finalColor = disabled ? disabledColor : color;
+
+  const backGroundColor = disabled
+    ? "transparent"
+    : value
+      ? theme.colors.primary
+      : "transparent";
+
+  const iconColor = disabled
+    ? disabledColor
+    : value
+      ? theme.colors.onPrimary
+      : theme.colors.primary;
 
   const handlePress = () => {
     if (!disabled) {
@@ -63,11 +92,23 @@ const RadioButton = ({
       accessibilityState={{ checked: value, disabled }}
       {...pressableProps}
     >
-      <View style={[styles.radioOuter, { borderColor: finalColor }]}>
-        {value && (
-          <View style={[styles.radioInner, { backgroundColor: finalColor }]} />
-        )}
-      </View>
+      {
+        <View
+          style={[
+            styles.radioOuter,
+            { borderColor: finalColor },
+            icon && { backgroundColor: backGroundColor },
+          ]}
+        >
+          {icon
+            ? renderIcon(icon, iconColor)
+            : value && (
+                <View
+                  style={[styles.radioInner, { backgroundColor: finalColor }]}
+                />
+              )}
+        </View>
+      }
       {label && (
         <Text
           style={[
@@ -88,18 +129,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   radioOuter: {
-    height: 24,
-    width: 24,
-    borderRadius: 12,
+    height: scaledSize(28),
+    width: scaledSize(28),
+    borderRadius: scaledSize(14),
     borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 10,
+    marginRight: 8,
   },
   radioInner: {
-    height: 12,
-    width: 12,
-    borderRadius: 6,
+    height: scaledSize(16),
+    width: scaledSize(16),
+    borderRadius: scaledSize(8),
   },
 });
 
