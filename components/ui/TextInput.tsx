@@ -323,10 +323,11 @@ export default TextInput;
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: scaledSize(50),
+    minHeight: scaledSize(39),
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   textInputContainer: {
     flex: 1,
@@ -336,15 +337,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-start",
     paddingHorizontal: 13,
-    minHeight: scaledSize(16),
+    paddingBottom: 5,
+    minHeight: scaledSize(12),
   },
   errorMessage: {
-    fontSize: 12,
+    fontSize: scaledSize(12),
     textAlign: "left",
     flex: 1,
   },
   counter: {
-    fontSize: 12,
+    fontSize: scaledSize(12),
     textAlign: "right",
     marginLeft: 5,
   },
@@ -352,7 +354,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     paddingHorizontal: 4,
     fontWeight: "bold",
-    fontSize: 12,
+    fontSize: scaledSize(12),
     zIndex: 1,
   },
   leftLabel: {
