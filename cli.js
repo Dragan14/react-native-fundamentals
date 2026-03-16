@@ -249,6 +249,75 @@ const removeComponent = async (componentName) => {
   }
 };
 
+// Command to update a component in the user's project
+const updateComponent = async (componentName) => {
+  if (!componentName) {
+    console.error("❌ Please specify a component name");
+    showHelp();
+    return;
+  }
+
+  if (componentName === "all") {
+    const allItems = [
+      ...availableComponents,
+      ...availableContexts,
+      ...availableThemes,
+    ];
+    for (const item of allItems) {
+      await updateComponent(item);
+    }
+    console.log(
+      "✅ Successfully updated all components, contexts, and themes.",
+    );
+    return;
+  }
+
+  if (!isValidComponent(componentName)) {
+    console.error(`❌ Component "${componentName}" is not available.`);
+    console.log("Available components:");
+    availableComponents.forEach((comp) => console.log(`  - ${comp}`));
+    console.log("Available themes:");
+    availableThemes.forEach((theme) => console.log(`  - ${theme}`));
+    return;
+  }
+
+  let sourcePath = "";
+  let targetPath = "";
+
+  if (availableComponents.includes(componentName)) {
+    sourcePath = path.resolve(__dirname, `components/ui/${componentName}.tsx`);
+    targetPath = path.resolve(
+      process.cwd(),
+      "components",
+      "ui",
+      `${componentName}.tsx`,
+    );
+  } else if (availableContexts.includes(componentName)) {
+    sourcePath = path.resolve(__dirname, `context/ui/${componentName}.tsx`);
+    targetPath = path.resolve(
+      process.cwd(),
+      "context",
+      "ui",
+      `${componentName}.tsx`,
+    );
+  } else if (availableThemes.includes(componentName)) {
+    sourcePath = path.resolve(__dirname, `themes/${componentName}.ts`);
+    targetPath = path.resolve(process.cwd(), "themes", `${componentName}.ts`);
+  }
+
+  if (!(await fs.pathExists(targetPath))) {
+    console.log(
+      `ℹ️ ${componentName} does not exist in your project. Use "add" to add it first.`,
+    );
+    return;
+  }
+
+  const success = await copyFile(sourcePath, targetPath);
+  if (success) {
+    console.log(`✅ Successfully updated ${componentName}`);
+  }
+};
+
 // Command to list all available components
 const listComponents = () => {
   console.log("Available components:");
@@ -267,6 +336,7 @@ Usage:
 
 Commands:
   add <component>    Add a component to your project
+  update <component> Update a component to the latest version
   remove <component> Remove a component from your project
   list               List all available components
   help               Show this help information
@@ -275,6 +345,8 @@ Examples:
   npx react-native-fundamentals add Button
   npx react-native-fundamentals add ThemeContext
   npx react-native-fundamentals add all
+  npx react-native-fundamentals update Button
+  npx react-native-fundamentals update all
   npx react-native-fundamentals remove Button
   npx react-native-fundamentals remove all
   npx react-native-fundamentals list
@@ -290,6 +362,9 @@ const main = async () => {
         break;
       case "remove":
         await removeComponent(componentName);
+        break;
+      case "update":
+        await updateComponent(componentName);
         break;
       case "list":
         listComponents();
