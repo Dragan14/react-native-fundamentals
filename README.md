@@ -42,6 +42,9 @@ Some components require additional dependencies:
   - [react-native-safe-area-context](https://docs.expo.dev/versions/latest/sdk/safe-area-context/)
   - [react-native-reanimated](https://docs.expo.dev/versions/latest/sdk/reanimated/)
 
+- **Alert Component:**
+  - [react-native-reanimated](https://docs.expo.dev/versions/latest/sdk/reanimated/)
+
 - **SafeAreaView Component:**
   - [react-native-safe-area-context](https://docs.expo.dev/versions/latest/sdk/safe-area-context/)
 

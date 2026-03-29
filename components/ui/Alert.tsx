@@ -8,6 +8,7 @@ import {
   View,
   Platform,
 } from "react-native";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useTheme } from "../../context/ui/ThemeContext";
 
 /**
@@ -38,7 +39,11 @@ const Alert = ({
   if (!visible) return null;
 
   return (
-    <View style={[StyleSheet.absoluteFill, styles.backdrop]}>
+    <Animated.View
+      entering={FadeIn.duration(200)}
+      exiting={FadeOut.duration(200)}
+      style={[StyleSheet.absoluteFill, styles.backdrop]}
+    >
       {dismissOnBackdropPress && (
         <Pressable style={StyleSheet.absoluteFill} onPress={onDismiss} />
       )}
@@ -51,7 +56,7 @@ const Alert = ({
       >
         {children}
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
