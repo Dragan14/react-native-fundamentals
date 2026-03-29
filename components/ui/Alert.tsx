@@ -1,7 +1,6 @@
 // Alert.tsx
 import { ReactNode } from "react";
 import {
-  Modal,
   StyleSheet,
   StyleProp,
   ViewStyle,
@@ -36,28 +35,23 @@ const Alert = ({
 }: AlertProps) => {
   const { theme } = useTheme();
 
+  if (!visible) return null;
+
   return (
-    <Modal
-      animationType="fade"
-      transparent={true}
-      visible={visible}
-      onRequestClose={onDismiss}
-    >
-      <View style={styles.backdrop}>
-        {dismissOnBackdropPress && (
-          <Pressable style={StyleSheet.absoluteFill} onPress={onDismiss} />
-        )}
-        <View
-          style={[
-            styles.alertContainer,
-            { backgroundColor: theme.colors.background },
-            style,
-          ]}
-        >
-          {children}
-        </View>
+    <View style={[StyleSheet.absoluteFill, styles.backdrop]}>
+      {dismissOnBackdropPress && (
+        <Pressable style={StyleSheet.absoluteFill} onPress={onDismiss} />
+      )}
+      <View
+        style={[
+          styles.alertContainer,
+          { backgroundColor: theme.colors.background },
+          style,
+        ]}
+      >
+        {children}
       </View>
-    </Modal>
+    </View>
   );
 };
 
