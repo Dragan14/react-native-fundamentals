@@ -401,16 +401,21 @@ npx react-native-fundamentals add Toast
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ToastProvider } from "../context/ToastContext";
+import { AlertProvider } from "../context/AlertContext";
 
 // Ensure the ToastProvider is wrapped in SafeAreaProvider and GestureHandlerRootView
 <SafeAreaProvider>
   <GestureHandlerRootView>
     <ToastProvider>
-      <App />
+      <AlertProvider>
+        <App />
+      </AlertProvider>
     </ToastProvider>
   </GestureHandlerRootView>
 </SafeAreaProvider>;
 ```
+
+> **Note:** If your app uses both Toast and Alert, wrap `AlertProvider` inside `ToastProvider` so Toast renders correctly above Alert.
 
 ```jsx
 import { useToast } from "../context/ToastContext";
